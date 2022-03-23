@@ -37,6 +37,11 @@ const SocialSchema = new Schema({
     id: false
 });
 
+// get total count of comments and replies on retrieval
+SocialSchema.virtual('commentCount').get(function() {
+  return this.comments.reduce((total, comment) => total + comment.replies.length + 1, 0);
+});
+
 // create the Social model using the SocialSchema
 const Social= model('Social', SocialSchema);
 
