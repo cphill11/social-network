@@ -17,8 +17,21 @@ const SocialSchema = new Schema({
     //   type: String,
     //   default: 'Large'
     // },
-    // toppings: []
-  });
+    // toppings: [],
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+      }
+    ]
+  },
+    // tell schema that it can use virtuals; id is set to false as it is a virtual that Mongoose returns (don't need)
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false
+});
 
 // create the Social model using the SocialSchema
 const Social= model('Social', SocialSchema);
