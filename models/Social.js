@@ -1,5 +1,6 @@
 // import dependencies; Schema constructor & model fxn come straight from Mongoose
 const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 // create schema w/ desired data after import functionality
 const SocialSchema = new Schema({
@@ -9,10 +10,12 @@ const SocialSchema = new Schema({
     // createdBy: {
     //   type: String
     // },
-    // createdAt: {
-    //   type: Date,
-    //   default: Date.now
-    // },
+    createdAt: {
+      type: Date,
+      // creates timestamp should user not enter a value
+      default: Date.now,
+      get: (createdAtVal) => dateFormat(createdAtVal)
+    },
     // size: {
     //   type: String,
     //   default: 'Large'
@@ -29,6 +32,7 @@ const SocialSchema = new Schema({
   {
     toJSON: {
       virtuals: true,
+      getters: true
     },
     id: false
 });
