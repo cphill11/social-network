@@ -8,7 +8,7 @@ const {
     createSocial,
     updateSocial,
     deleteSocial
-  } = require('../../controllers/social-controller');
+  } = require('../../controllers/social-controllers');
 
 
 
