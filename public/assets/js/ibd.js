@@ -18,8 +18,8 @@ request.onsuccess = function (event) {
 
   // check if app is online, if yes run uploadSocial() function to send all local db data to api; web link: https://developer.mozilla.org/en-US/docs/Web/API/Navigator
   if (navigator.onLine) {
-    // we haven't created this yet, but we will soon, so let's comment it out for now
-    // uploadSocial();
+   // call to upload social
+    uploadSocial();
   }
 };
 // eventhandler for unsuccessful connection to db (onerror)
@@ -39,3 +39,49 @@ function saveRecord(record) {
   // add record to your store with add method
   socialObjectStore.add(record);
 }
+// handles collecting all of data from new_social object store in IndexedDB and POST it to server
+function uploadSocial() {
+  // open a transaction on your db
+  const transaction = db.transaction(["new_social"], "readwrite");
+
+  // access your object store
+  const socialObjectStore = transaction.objectStore("new_social");
+
+  // get all records from store and set to a variable;will have a .result property that is an array of all the data retrieved from new_socialobject store
+  const getAll = socialObjectStore.getAll();
+
+  // upon a successful .getAll() execution, run this function; asyncrhonous function needed to be attached to event handler in order to retrieve data
+  getAll.onsuccess = function () {
+    // if there was data in indexedDb's store, let's send it to the api server
+    if (getAll.result.length > 0) {
+      fetch("/api/social", {
+        method: "POST",
+        body: JSON.stringify(getAll.result),
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((serverResponse) => {
+          if (serverResponse.message) {
+            throw new Error(serverResponse);
+          }
+          // open one more transaction
+          const transaction = db.transaction(["new_social"], "readwrite");
+          // access the new_pizza object store
+          const socialObjectStore = transaction.objectStore("new_social");
+          // clear all items in your store
+          socialObjectStore.clear();
+
+          alert("All saved social data has been submitted!");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+}
+
+// browser event listener; listen for app coming back online
+window.addEventListener('online', uploadSocial);
