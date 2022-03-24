@@ -47,9 +47,9 @@ const socialController = {
       .catch((err) => res.json(err));
   },
 
-  // update social data by id
+  // update social data by id; runValidators included to validate all new info
   updateSocial({ params, body }, res) {
-    Social.findOneAndUpdate({ _id: params.id }, body, { new: true })
+    Social.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
       .then((dbSocialData) => {
         if (!dbSocialData) {
           res
