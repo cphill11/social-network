@@ -1,5 +1,5 @@
 // index.js packages up all the models into one directory
-const Social = require('./Social');
-const Comment = require('./Comment');
+const Thought = require('./Thought');
+const User = require('./User');
 
-module.exports = { Social, Comment };
+module.exports = { Thought, User };
