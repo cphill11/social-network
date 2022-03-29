@@ -47,6 +47,7 @@ const ReplySchema = new Schema(
   {
     toJSON: {
       getters: true,
+      virtuals: true,
     },
   }
 );
@@ -68,14 +69,14 @@ const ReplySchema = new Schema(
 //     },
 //     // use ReplySchema to validate data for a reply; nested in comment's documents & not referred to
 //     replies: [ReplySchema],
-//   },
-//   {
-//     toJSON: {
-//       virtuals: true,
-//       getters: true,
-//     },
-//     id: false,
-//   }
+  // },
+  // {
+  //   toJSON: {
+  //     virtuals: true,
+  //     getters: true,
+  //   },
+  //   id: false,
+  // }
 // );
 
 UserSchema.virtual('friendCount').get(function() {

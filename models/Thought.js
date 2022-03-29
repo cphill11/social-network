@@ -3,19 +3,17 @@ const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 
 // create schema w/ desired data after import functionality
-const SocialSchema = new Schema(
+const ThoughtSchema = new Schema(
   {
-    socialName: {
+    username: {
       type: String,
-      // required set to true requires data to exist for this field
       required: true,
-      // trim set to true will remove white space before & after input string (useful for username/ pwd strings)
       trim: true,
     },
-    createdBy: {
+    thoughtText: {
       type: String,
       required: true,
-      trim: true,
+      // must be between 1 and 280 characters        
     },
     createdAt: {
       type: Date,
@@ -31,10 +29,11 @@ const SocialSchema = new Schema(
     //   default: 'Large'
     // },
     // toppings: [],
-    comments: [
+    reactions: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Comment",
+        ref: "Reaction",
+        // is this correct (??)
       },
     ],
   },
@@ -49,7 +48,7 @@ const SocialSchema = new Schema(
 );
 
 // get total count of comments and replies on retrieval
-SocialSchema.virtual("commentCount").get(function () {
+ThoughtSchema.virtual("thoughtCount").get(function () {
   return this.comments.reduce(
     (total, comment) => total + comment.replies.length + 1,
     0
@@ -57,7 +56,7 @@ SocialSchema.virtual("commentCount").get(function () {
 });
 
 // create the Social model using the SocialSchema
-const Social = model("Social", SocialSchema);
+const Thought = model("Thought", ThoughtSchema);
 
 // export the Social model
-module.exports = Social;
+module.exports = Thought;
