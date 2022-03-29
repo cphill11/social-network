@@ -1,11 +1,11 @@
-// hook the routes set up in social-routes.js into the entire server
+// hook the routes set up in user-routes.js & thought-routes into the entire server
 const router = require('express').Router();
-const commentRoutes = require('./comment-routes');
-const socialRoutes = require('./social-routes');
+const userRoutes = require('./user-routes');
+const thoughtRoutes = require('./thought-routes');
 
 // export routes
-router.use('/comments', commentRoutes);
+router.use('/User', userRoutes);
 // add prefix of `/social` to routes created in `social-routes.js`
-router.use('/social', socialRoutes);
+router.use('/Thought', thoughtRoutes);
 
 module.exports = router;

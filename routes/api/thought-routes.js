@@ -3,11 +3,11 @@ const router = require('express').Router();
 
 // import functionality & hook it up w/ routes, using controller method as callback
 const {
-    getAllSocial,
-    getSocialById,
-    createSocial,
-    updateSocial,
-    deleteSocial
+    getAllThought,
+    getThoughtById,
+    createThought,
+    updateThought,
+    deleteThought
   } = require('../../controllers/social-controllers');
 
 
@@ -15,14 +15,14 @@ const {
 // Set up GET all and POST at /api/social, using controller method as callback
 router
   .route('/')
-  .get(getAllSocial)
-  .post(createSocial);
+  .get(getAllThought)
+  .post(createThought);
 
 // Set up GET one, PUT, and DELETE at /api/social/:id
 router
   .route('/:id')
-  .get(getSocialById)
-  .put(updateSocial)
-  .delete(deleteSocial);
+  .get(getThoughtById)
+  .put(updateThought)
+  .delete(deleteThought);
 
 module.exports = router;
