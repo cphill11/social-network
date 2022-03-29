@@ -24,6 +24,7 @@ const UserSchema = new Schema(
     friends: {
       // array of _id values referencing the USER model (self-reference)
     }
+
   },
   {
     toJSON: {
