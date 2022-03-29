@@ -11,7 +11,7 @@ const reactionSchema = new Schema({
   reactionBody: {
     type: String,
     required: true,
-    // max 280 characters
+    maxLength: 280,
   },
 
   username: {

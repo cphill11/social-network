@@ -24,25 +24,6 @@ const UserSchema = new Schema(
     friends: {
       // array of _id values referencing the USER model (self-reference)
     }
-
-  //   replyId: {
-  //     type: Schema.Types.ObjectId,
-  //     default: () => new Types.ObjectId(),
-  //   },
-  //   replyBody: {
-  //     type: String,
-  //     required: true,
-  //     trim: true
-  //   },
-  //   writtenBy: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   createdAt: {
-  //     type: Date,
-  //     default: Date.now,
-  //     get: (createdAtVal) => dateFormat(createdAtVal),
-  //   },
   },
   {
     toJSON: {
@@ -51,33 +32,6 @@ const UserSchema = new Schema(
     },
   }
 );
-
-// const CommentSchema = new Schema(
-//   {
-//     writtenBy: {
-//       type: String,
-//       required: true
-//     },
-//     commentBody: {
-//       type: String,
-//       required: true
-//     },
-//     createdAt: {
-//       type: Date,
-//       default: Date.now,
-//       get: (createdAtVal) => dateFormat(createdAtVal),
-//     },
-//     // use ReplySchema to validate data for a reply; nested in comment's documents & not referred to
-//     replies: [ReplySchema],
-  // },
-  // {
-  //   toJSON: {
-  //     virtuals: true,
-  //     getters: true,
-  //   },
-  //   id: false,
-  // }
-// );
 
 UserSchema.virtual('friendCount').get(function() {
   return this.friends.length;

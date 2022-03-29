@@ -1,20 +1,17 @@
 // import dependencies; Schema constructor & model fxn come straight from Mongoose
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
-const reactionSchema = require('./Reaction');
+const reactionSchema = require("./Reaction");
 
 // create schema w/ desired data after import functionality
 const ThoughtSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+    // user who created the thought
     thoughtText: {
       type: String,
       required: true,
-      // must be between 1 and 280 characters        
+      minLength: 1,
+      maxLength: 280,
     },
     createdAt: {
       type: Date,
@@ -22,19 +19,16 @@ const ThoughtSchema = new Schema(
       default: Date.now,
       get: (createdAtVal) => dateFormat(createdAtVal),
     },
-    // size: {
-    //   type: String,
-    //   required: true,
-        // enum = enumerable (data can be iterated repeatedly, such as for..in loops; provide an array the the size field will accept)
-    //   enum: ['Personal', 'Small', 'Medium', 'Large', 'Extra Large'],
-    //   default: 'Large'
-    // },
-    // toppings: [],
+    username: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     reactions: [
       {
         type: Schema.Types.ObjectId,
         ref: "Reaction",
-        // is this correct (??)
+        // is this correct (??); need array of nested documents created w/ reactionSchema
       },
     ],
   },
