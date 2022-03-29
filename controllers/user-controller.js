@@ -5,8 +5,30 @@ const { User, Thought } = require("../models");
 const userController = {
 
 
+// GET all users
+
+// GET a single user by _id & populated thought & friend data
+
+// POST a new user
+    // example:
+    // {
+    //   "username": "lernantino",
+    //   "email": "lernantino@gmail.com"
+    // }
 
 
+// PUT to update a user by its _id
+
+// DELTE to remove user by its _id
+
+
+
+
+// /api/users/:userId/friends/:friendId
+
+// POST to add a new friend to a user's friend list
+
+// DELETE to remove a friend from a user's friend list
 
 
 

@@ -1,5 +1,7 @@
 # social-network
 
+## Description
+
 AS A social media startup
 I WANT an API for my social network that uses a NoSQL database
 SO THAT my website can handle large amounts of unstructured data
@@ -14,3 +16,34 @@ WHEN I test API POST, PUT, and DELETE routes in Insomnia
 THEN I am able to successfully create, update, and delete users and thoughts in my database
 WHEN I test API POST and DELETE routes in Insomnia
 THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
+
+
+
+## Installation
+
+
+## Usage
+
+
+
+## Website: https://cphill11.github.io/social-network/
+
+## Screencastify link: 
+
+
+## Image
+
+![Screenshot](/assets/images/screenshot.png)
+
+## Credits:
+
+Criste Phillips 
+
+## License
+MIT
+
+## Badges
+![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
+
+## Contributing
+Sticky paws off unless checking with original creator first.  No exceptions.
