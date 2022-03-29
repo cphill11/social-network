@@ -8,17 +8,17 @@ const {
     createThought,
     updateThought,
     deleteThought
-  } = require('../../controllers/social-controllers');
+  } = require('../../controllers/thought-controller');
 
 
 
-// Set up GET all and POST at /api/social, using controller method as callback
+// Set up GET all and POST at /api/thought, using controller method as callback
 router
   .route('/')
   .get(getAllThought)
   .post(createThought);
 
-// Set up GET one, PUT, and DELETE at /api/social/:id
+// Set up GET one, PUT, and DELETE at /api/thought/:id
 router
   .route('/:id')
   .get(getThoughtById)

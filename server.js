@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.use(require('./routes'));
+app.use(require('./routes/api'));
 
 // tell Mongoose which DB we want to connect to
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/social-network', {

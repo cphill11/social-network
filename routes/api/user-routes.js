@@ -8,14 +8,14 @@ const {
   deleteUser
   } = require('../../controllers/user-controller');
 
-// Set up GET all and POST at /api/social, using controller method as callback
+// Set up GET all and POST at /api/user, using controller method as callback
 router
   .route('/')
   .get(getAllUser)
   .post(createUser);
 
 
-  // Set up GET one, PUT, and DELETE at /api/social/:id
+  // Set up GET one, PUT, and DELETE at /api/user/:id
 router
 .route('/:id')
 .get(getUserById)
