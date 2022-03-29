@@ -1,6 +1,7 @@
 // import dependencies; Schema constructor & model fxn come straight from Mongoose
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
+const reactionSchema = require('./Reaction');
 
 // create schema w/ desired data after import functionality
 const ThoughtSchema = new Schema(
@@ -47,16 +48,18 @@ const ThoughtSchema = new Schema(
   }
 );
 
-// get total count of comments and replies on retrieval
-ThoughtSchema.virtual("thoughtCount").get(function () {
-  return this.comments.reduce(
-    (total, comment) => total + comment.replies.length + 1,
+// need a virtual called reactionCount that retrieves length of thought's reactions array field on query
+// (????????)
+// get total count of reactions on retrieval
+ThoughtSchema.virtual("reactionCount").get(function () {
+  return this.reactions.reduce(
+    (total, reaction) => total + comment.replies.length + 1,
     0
   );
 });
 
-// create the Social model using the SocialSchema
-const Thought = model("Thought", ThoughtSchema);
+// create the Thought model using the ThoughtSchema
+const Thought = model("Thought", ThoughtSchema, reactionSchema);
 
-// export the Social model
+// export the Thought model
 module.exports = Thought;

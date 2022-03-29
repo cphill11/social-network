@@ -1,10 +1,10 @@
 // uses validation that Mongoose does automatically
 const { Schema, model, Types } = require("mongoose");
 
-// import dateFormat fxn
-const dateFormat = require("../utils/dateFormat");
+// // import dateFormat fxn
+// const dateFormat = require("../utils/dateFormat");
 
-const ReplySchema = new Schema(
+const UserSchema = new Schema(
   {
     // set custom id to avoid confusion with parent comment's _id field
     username: {
