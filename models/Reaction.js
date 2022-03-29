@@ -1,3 +1,4 @@
+// subdocument of Thought Model
 const { Schema, Types } = require('mongoose');
 const dateFormat = require("../utils/dateFormat");
 
