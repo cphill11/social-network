@@ -4,8 +4,8 @@ const userRoutes = require('./user-routes');
 const thoughtRoutes = require('./thought-routes');
 
 // export routes
-router.use('/User', userRoutes);
-// add prefix of `/social` to routes created in `social-routes.js`
-router.use('/Thought', thoughtRoutes);
+router.use('/user', userRoutes);
+// add prefix of /thought to routes created in thought-routes.js
+router.use('/thought', thoughtRoutes);
 
 module.exports = router;
