@@ -1,8 +1,6 @@
 // uses validation that Mongoose does automatically
 const { Schema, model, Types } = require("mongoose");
-
-// // import dateFormat fxn
-// const dateFormat = require("../utils/dateFormat");
+const dateFormat = require("../utils/dateFormat");
 
 const UserSchema = new Schema(
   {
@@ -16,27 +14,43 @@ const UserSchema = new Schema(
     email: {
       type: String,
       unique: true,
-      match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
+      match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
+    },
+    createdBy: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    createdAt: {
+      type: Date,
+      // creates timestamp should user not enter a value
+      default: Date.now,
+      get: (createdAtVal) => dateFormat(createdAtVal),
     },
     thoughts: {
-      // array of _id values referencing the THOUGHT model
+      type: Schema.Types.ObjectId,
+      ref: "Thought",
     },
     friends: {
-      // array of _id values referencing the USER model (self-reference)
-    }
-
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     toJSON: {
       getters: true,
       virtuals: true,
     },
+    id: false,
   }
 );
 
-UserSchema.virtual('friendCount').get(function() {
-  return this.friends.length;
-});
+UserSchema.virtual("thoughtCount").get(function () {
+  return this.thoughts.reduce(
+    (total, thoughts) => total + thought.replies.length + 1,
+    0
+    );
+  });
 const User = model("User", UserSchema);
 
 module.exports = User;
