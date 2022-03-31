@@ -1,7 +1,6 @@
 // import dependencies; Schema constructor & model fxn come straight from Mongoose
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
-const reactionSchema = require("./Reaction");
 
 // create schema w/ desired data after import functionality
 const ThoughtSchema = new Schema(
