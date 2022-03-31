@@ -1,7 +1,6 @@
 // subdocument of Thought Model
-const { Schema, Types } = require('mongoose');
+const { Schema, Types } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
-const reactionSchema = require("./Reaction");
 
 const reactionSchema = new Schema({
   reactionId: {
@@ -16,8 +15,8 @@ const reactionSchema = new Schema({
   },
 
   username: {
-      type: String,
-      required: true,
+    type: String,
+    required: true,
   },
   createdAt: {
     type: Date,
