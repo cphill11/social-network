@@ -46,7 +46,7 @@ const UserSchema = new Schema(
 );
 
 UserSchema.virtual("thoughtCount").get(function () {
-  return this.thoughts.reduce(
+  return this.thought.reduce(
     (total, thoughts) => total + thought.replies.length + 1,
     0
     );
