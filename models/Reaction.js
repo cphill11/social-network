@@ -19,6 +19,7 @@ const reactionSchema = new Schema(
       type: String,
       required: true,
     },
+
     createdAt: {
       type: Date,
       // creates timestamp should user not enter a value
@@ -29,6 +30,7 @@ const reactionSchema = new Schema(
   {
     toJSON: {
       getters: true,
+      virtuals: true,
     },
     id: false,
   }
