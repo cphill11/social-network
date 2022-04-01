@@ -1,7 +1,7 @@
 // import dependencies; Schema constructor & model fxn come straight from Mongoose
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
-const reactionSchema = require("./Reaction");
+const ReactionSchema = require("./Reaction");
 
 // create schema w/ desired data after import functionality
 const ThoughtSchema = new Schema(
@@ -25,7 +25,7 @@ const ThoughtSchema = new Schema(
       trim: true,
     },
     // validate data for rxn
-    reactions: [reactionSchema],
+    reactions: [ReactionSchema],
   },
   // tell schema that it can use virtuals; id is set to false as it is a virtual that Mongoose returns (don't need)
   {

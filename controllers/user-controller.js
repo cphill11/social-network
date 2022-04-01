@@ -43,7 +43,7 @@ const userController = {
   // get a new friend; $addToSet prevents duplicates
   newFriend(req, res) {
     User.findOneAndUpdate(
-      { _id: req.params.id },
+      { _id: req.params.userId },
       { $addToSet: { friends: req.params.friendId } },
       { new: true }
     )
@@ -54,7 +54,7 @@ const userController = {
   // delete that friend
   deleteFriend({ params }, res) {
     User.findOneAndUpdate(
-      { _id: req.params.id },
+      { _id: req.params.userId },
       { $pull: { friends: req.params.friendId } },
       { new: true }
     )
