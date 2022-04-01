@@ -13,21 +13,17 @@ const {
 } = require("../../controllers/thought-controller");
 
 // api route for thoughts
-router.route("/").get(getAllThought);
+router.route("/").get(getAllThought).post(addThought);
 
 // api route for /api/thoughts/<userId>
-router.route('/:userId').post(addThought);
+router.route('/:thoughtId').put(updateThought).get(getThoughtById).delete(removeThought);
 
 // api route for /api/thought/<userID>/<thoughtId>
 router
-  .route("/:userId/:thoughtId")
-  .put(updateThought)
-  .get(getThoughtById)
-  .post(addReaction)
-  .delete(removeReaction)
-  .delete(removeThought);
+  .route("/:thoughtId/reaction")
+  .post(addReaction);
 
 // api route for /api/thoughts/<userId>/<thoughtId>/<reactionId>
-router.route('/:userId/:thoughtId/:reactionId').delete(removeReaction);
+router.route('/:thoughtId/reaction/:reactionId').delete(removeReaction);
 
 module.exports = router;

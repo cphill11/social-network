@@ -18,16 +18,16 @@ const thoughtController = {
   },
   // GET to get a single thought by its _id
   getThoughtById({ params }, res) {
-    Thought.findOne({ _id: params.id })
+    Thought.findOne({ _id: params.thoughtId })
       .populate({
         path: "reactions",
-        // select: "-__v",
+      //   // select: "-__v",
       })
       // .select("-__v")
       .then((dbThoughtData) => {
         // If no thought is found, send 404
         if (!dbThoughtData) {
-          res.status(404).json({ message: "No thought found with this id!" });
+          res.status(404).json({ message: "No thought found with this id" });
           return;
         }
         res.json(dbThoughtData);
@@ -40,7 +40,7 @@ const thoughtController = {
 
 // add thought to user
 addThought({ params, body }, res) {
-  console.log(body);
+  console.log(params);
   Thought.create(body)
     .then(({ _id }) => {
       return User.findOneAndUpdate(
@@ -61,15 +61,19 @@ addThought({ params, body }, res) {
 
   // PUT to update a thought by its _id; runValidators included to validate all new info
   updateThought({ params, body }, res) {
-    Thought.findOneAndUpdate({ _id: params.id }, body, {
-      new: true,
-      runValidators: true,
-    })
+     Thought.update(body)
+      .then(({ _id }) => {
+        return Thought.findOneAndUpdate(
+          { _id: params.userId },
+          { $update: { thoughts: _id } },
+          { new: true }
+        );
+      })
       .then((dbThoughtData) => {
         if (!dbThoughtData) {
           res
-            .status(404)
-            .json({ message: "No thought found with this id!" });
+            .status(200)
+            .json({ message: "Thought updated" });
           return;
         }
         res.json(dbThoughtData);
@@ -84,8 +88,8 @@ addThought({ params, body }, res) {
         if (!deletedThought) {
           return res.status(404).json({ message: "No thought with this id" });
         }
-        return Thought.findOneAndUpdate(
-          { _id: params.thoughtId },
+        return User.findOneAndUpdate(
+          { _id: params.userId },
           { $pull: { thoughts: params.thoughtId } },
           { new: true }
         );
