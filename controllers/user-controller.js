@@ -8,9 +8,9 @@ const userController = {
     User.find({})
       .populate({
         path: "thoughts",
-        select: "-__v",
+        // select: "-__v",
       })
-      .select("-__v")
+      // .select("-__v")
       .sort({ _id: -1 })
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
@@ -21,11 +21,9 @@ const userController = {
 
   // GET a single user by _id & populated thought & friend data
   getUserById({ params }, res) {
-    Thought.findOne({ _id: params.id })
-      .populate({
-        path: "thoughts",
-        select: "-__v",
-      })
+    User.findOne({ _id: params.id })
+      .populate('friends')
+      .populate('thoughts')
       .select("-__v")
       .sort({ _id: -1 })
       .then((dbUserData) => {
