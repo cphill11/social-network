@@ -1,12 +1,10 @@
 // import dependencies; Schema constructor & model fxn come straight from Mongoose
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 const ReactionSchema = require("./Reaction");
 
-// create schema w/ desired data after import functionality
 const ThoughtSchema = new Schema(
   {
-    // user who created the thought
     thoughtText: {
       type: String,
       required: true,
@@ -15,10 +13,10 @@ const ThoughtSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      // creates timestamp should user not enter a value
       default: Date.now,
       get: (createdAtVal) => dateFormat(createdAtVal),
     },
+    // user who created the thought
     username: {
       type: String,
       required: true,

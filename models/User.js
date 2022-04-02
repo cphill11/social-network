@@ -1,10 +1,7 @@
-// uses validation that Mongoose does automatically
 const { Schema, model, Types } = require("mongoose");
-// const dateFormat = require("../utils/dateFormat");
 
 const UserSchema = new Schema(
   {
-    // set custom id to avoid confusion with parent comment's _id field
     username: {
       type: String,
       unique: true,
