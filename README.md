@@ -21,7 +21,7 @@ Testing the API POST and DELETE routes in Insomnia enables the user to successfu
 Social networking management.
 
 
-## Website: https://cphill11.github.io/social-network/
+## Website: https://github.com/cphill11/social-network.git
 
 ## Screencastify link: https://drive.google.com/file/d/13Uru265ko2wr6lN3sOSLv3wlVoAbHV5E/view
 
